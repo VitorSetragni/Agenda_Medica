@@ -3,7 +3,7 @@
 Sistema de Agenda Web para demonstração do ciclo completo de desenvolvimento de software.
 ## Link do site
 ```
-https://agenda-medica-ycaa.onrender.com/profissionais
+https://agenda-medica-ycaa.onrender.com
 ```
 
 ## Tecnologias
