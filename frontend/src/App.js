@@ -40,12 +40,6 @@ function App() {
           </div>
         </nav>
 
-        <div className="local-info">
-          <strong>Banco local:</strong> os dados são salvos no LocalStorage deste navegador.
-          <button className="btn btn-sm" onClick={baixarBackup}>Exportar JSON</button>
-          <button className="btn btn-danger btn-sm" onClick={limparDados}>Limpar dados</button>
-        </div>
-
         <main className="container">
           <Routes>
             <Route path="/" element={<ProfissionalSaudeList />} />
