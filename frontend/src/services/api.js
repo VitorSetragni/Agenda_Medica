@@ -1,5 +1,3 @@
-// Serviço local que simula uma API usando o LocalStorage do navegador.
-// Assim a aplicação funciona sem backend e sem banco PostgreSQL.
 
 const CHAVES = {
   profissionais: 'agenda_medica_profissionais',
