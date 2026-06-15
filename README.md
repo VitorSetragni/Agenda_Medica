@@ -1,114 +1,65 @@
-# Agenda Médica Web - LocalStorage
+# Agenda Web - Material Educacional
 
-Aplicação de agenda médica feita em React, baseada nas entidades do diagrama:
+Sistema de Agenda Web para demonstração do ciclo completo de desenvolvimento de software.
 
-- Profissional de Saúde
-- Atendimento
-- Exame Lab
+## Tecnologias
 
-## Entidades
+| Camada | Tecnologia |
+|--------|-----------|
+| Backend | Java 17 + Spring Boot 3.2 |
+| Frontend | React 18 + React Router |
+| Banco de Dados | PostgreSQL 15 |
+| Build Backend | Maven |
+| Build Frontend | Node.js 20 + npm |
+| Versionamento | Git + GitHub |
+| CI/CD | GitHub Actions |
+| Containers | Docker + Docker Compose |
+| Produção | AWS (ECS + RDS + ECR + ALB) |
 
-### Profissional de Saúde
+## Estrutura do Projeto
 
-Campos:
-
-- id
-- nome
-- telefone
-- endereco
-- categoria
-
-Categorias disponíveis:
-
-- MEDICO
-- FISIOTERAPEUTA
-- PSICOLOGO
-
-### Atendimento
-
-Campos:
-
-- id
-- data
-- horario
-- problemaTexto
-- receitaSaude
-- profissionalSaudeId
-
-Relacionamento:
-
-```txt
-Profissional de Saúde 1 --- N Atendimento
+```
+agenda-web/
+├── backend/           # API REST (Java/Spring Boot)
+│   ├── pom.xml
+│   ├── Dockerfile
+│   └── src/
+├── frontend/          # UI (React)
+│   ├── package.json
+│   ├── Dockerfile
+│   └── src/
+├── docker-compose.yml
+├── .github/workflows/ci-cd.yml
+└── apresentacao_completa.html  # Apresentação da aula
 ```
 
-### Exame Lab
-
-Campos:
-
-- id
-- descricao
-- dataSolicitacao
-- resultado
-- atendimentoId
-
-Relacionamento:
-
-```txt
-Atendimento 1 --- N Exame Lab
-```
-
-## Como rodar
-
-Entre na pasta do frontend:
+## Como Executar (Desenvolvimento)
 
 ```bash
-cd frontend
-npm install
-npm start
+# Usando Docker Compose
+docker-compose up -d
+
+# Backend disponível em: http://localhost:8080
+# Frontend disponível em: http://localhost:3000
 ```
 
-Depois acesse:
-
-```txt
-http://localhost:3000
-```
-
-## Onde os dados ficam salvos?
-
-Os dados ficam no LocalStorage do navegador, usando estas chaves:
-
-```txt
-agenda_medica_profissionais
-agenda_medica_atendimentos
-agenda_medica_exames
-```
-
-## Vantagens dessa versão
-
-- Mais simples para apresentar.
-- Não precisa configurar banco de dados.
-- Não precisa subir backend Java/Spring.
-- Funciona apenas com React no navegador.
-
-## Limitações
-
-- Os dados ficam apenas no navegador atual.
-- Outro computador não consegue ver os mesmos dados.
-- Se limpar os dados do navegador, os registros são apagados.
-- Não é recomendado para sistema real de clínica, apenas para atividade, protótipo ou demonstração.
-
-## Build para deploy estático
+## Como Executar Testes
 
 ```bash
+# Backend (JUnit 5 + Mockito)
+cd backend
+mvn test
+
+# Frontend (Jest)
 cd frontend
-npm install
-npm run build
+npm test
 ```
 
-O resultado fica na pasta:
+## Divisão de Trabalho
 
-```txt
-frontend/build
-```
+- **DEV 1 - Ana:** CRUD de Contatos (ContatoController + ContatoList/Form)
+- **DEV 2 - Bruno:** CRUD de Compromissos (CompromissoController + CompromissoList/Form)
 
-Essa pasta pode ser publicada como site estático no Render, Netlify, Vercel ou GitHub Pages.
+## Apresentação
+
+Abra o arquivo `apresentacao_completa.html` no navegador para ver a apresentação completa da aula.

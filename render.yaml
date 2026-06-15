@@ -1,9 +1,64 @@
+# Render Blueprint (Infraestrutura como Código)
+# Descreve banco de dados, backend e frontend do agenda-medico.
+# Docs: https://render.com/docs/blueprint-spec
+databases:
+  - name: agenda-db
+    databaseName: agenda_db
+    user: agenda
+    plan: free
+    region: oregon
+
 services:
+  # ===== Backend: Spring Boot (Docker) =====
   - type: web
-    name: agenda-medica-localstorage
-    env: static
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/build
+    name: agenda-backend
+    runtime: docker
+    repo: https://github.com/laudares26/agenda-web
+    branch: deploy
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon
+    healthCheckPath: /api/contatos
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: agenda-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: agenda-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: agenda-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: agenda-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: agenda-db
+          property: password
+
+  # ===== Frontend: React (Static Site) =====
+  - type: web
+    name: agenda-frontend
+    runtime: static
+    repo: https://github.com/laudares26/agenda-web
+    branch: deploy
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      # Injeta o host público do backend; o api.js normaliza para https://host/api
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: agenda-backend
+          property: host
     routes:
       - type: rewrite
         source: /*
