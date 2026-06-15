@@ -6,8 +6,6 @@ Aplicação de agenda médica feita em React, baseada nas entidades do diagrama:
 - Atendimento
 - Exame Lab
 
-Nesta versão **não existe backend, PostgreSQL nem API externa**. Os dados são salvos no **LocalStorage do JavaScript**, ou seja, ficam armazenados no navegador usado pelo usuário.
-
 ## Entidades
 
 ### Profissional de Saúde
