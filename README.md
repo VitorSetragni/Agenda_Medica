@@ -34,7 +34,7 @@ agenda-web/
 │   └── src/
 ├── docker-compose.yml
 ├── .github/workflows/ci-cd.yml
-└── apresentacao_completa.html  # Apresentação da aula
+└── index.html  # Apresentação da aplicação
 ```
 
 ## Como Executar (Desenvolvimento)
